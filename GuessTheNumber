@@ -3,8 +3,6 @@ import random
 print("GUESS THE RANDOM NUMBER! FROM 1-9")
 random_number = random.randint(1, 9)
 
-symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "<", ">", "?", "/"]
-
 wrong_counter = 0
 while True:
     if wrong_counter == 3:
@@ -16,9 +14,6 @@ while True:
 
     if len(guess) > 1 and guess.isdigit():
         print("You must guess 1 number at a time!")
-        quit()
-    elif guess in symbols:
-        print("YOU MUST GUESS A NUMBER! NOT A SYMBOL!")
         quit()
     elif not guess.isdigit():
         print("YOU MUST GUESS A NUMBER! NOT A LETTER!")
