@@ -1,0 +1,110 @@
+from EnglishWords import english_words
+import random
+
+
+random_word = random.choice(english_words)
+while " " and "-" in random_word:
+    random_word = random.choice(english_words)
+    previous_letter = ""
+    for char in random_word:
+        if random_word.count(char) > 1:
+            continue
+
+
+def print_hangman(wrong_counter):
+    if wrong_counter == 0:
+        print("+---+")
+        print(" | | ")
+        print("   | ")
+        print("   | ")
+        print("   | ")
+        print("=====")
+    elif wrong_counter == 1:
+        print("+---+")
+        print(" | | ")
+        print(" 0 | ")
+        print("   | ")
+        print("   | ")
+        print("=====")
+    elif wrong_counter == 2:
+        print("+---+")
+        print(" | | ")
+        print(" 0 | ")
+        print(" | | ")
+        print("   | ")
+        print("=====")
+    elif wrong_counter == 3:
+        print("+---+")
+        print(" | | ")
+        print(" 0 | ")
+        print("/| | ")
+        print("   | ")
+        print("=====")
+    elif wrong_counter == 4:
+        print("+---+")
+        print(" | | ")
+        print(" 0 | ")
+        print("/|\\| ")
+        print("   | ")
+        print("=====")
+    elif wrong_counter == 5:
+        print("+---+")
+        print(" | | ")
+        print(" 0 | ")
+        print("/|\\| ")
+        print("/  | ")
+        print("=====")
+    elif wrong_counter == 6:
+        print("+---+")
+        print(" | | ")
+        print(" 0 | ")
+        print("/|\\| ")
+        print("/ \\| ")
+        print("=====")
+
+
+def print_lines():
+    for letter in random_word:
+        print("\u203E", end=" ")
+
+
+def print_word():
+    position = 0
+
+    for letter in random_word:
+        if letter in guessed_letters:
+            print(random_word[position], end=" ")
+        position += 1
+
+
+wrong_guesses = 0
+guessed_letters = []
+guessed_letters_count = 0
+
+print("WELCOME TO HANGMAN GAME!")
+print("1 GUESS AT A TIME!")
+while True:
+    print_hangman(wrong_guesses)
+    print("Guessed Letters:")
+    for item in guessed_letters:
+        print(f"{item}", end=" ")
+    print("\n")
+    print_word()
+    print(random_word)
+    print_lines()
+    guess = input("\n> ")
+
+    if len(guess) > 1:
+        print("Invalid! You can only guess 1 character at a time!")
+        continue
+    elif not guess.isalpha():
+        print("You can only guess letters!")
+        continue
+
+    if guessed_letters == len(random_word):
+        break
+    elif guess in random_word:
+        guessed_letters.append(guess)
+        guessed_letters_count += 1
+    else:
+        wrong_guesses += 1
