@@ -2,6 +2,7 @@ import datetime
 import pygame
 import os
 import time
+import sys
 pygame.font.init()
 
 
@@ -339,6 +340,7 @@ def main():
             if event.type == pygame.QUIT:
                 running == False
                 pygame.quit()
+                sys.exit()
 
         draw_window()
 
